@@ -1,0 +1,19 @@
+.el-tabs__header {
+    margin: 0px;
+    border-bottom: 1px solid #dddddd;
+}
+.el-tabs--card>.el-tabs__header .el-tabs__item.is-active {
+    border: 1px solid #dddddd;
+    border-bottom-color: #fff;
+}
+.el-tabs__content {
+    padding: 40px 20px;
+    border: 1px solid #dddddd;
+    border-top-color: #fff;
+}
+.el-tabs__item {
+    color: #333333;
+}
+.el-tabs__item.is-active .fa {
+    color: #20a0ff;
+}
