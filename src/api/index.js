@@ -11,3 +11,6 @@ export const userDetaile = (id) => {
 	return axios.post(base+'crm/api/Public/v1/?service=Contacter.GetContacterDetail',qs.stringify({id:id}))
 				.then(res=>res.data)
 };
+export const resetPhone = (phone) => {
+	console.log(phone);
+}

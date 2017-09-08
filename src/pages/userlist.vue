@@ -78,9 +78,11 @@
 				} else {
 					_type = this.$route.path.substring(1);
 				};
-				console.log(_type,this.name);
 				userList(_type,this.name).then((res) => {
 					this.total = res.data.length;
+					res.data.forEach(function(item){
+						item.age = new Date().getFullYear() - parseInt(item.age.substring(0,4));
+					});
 					this.users = res.data;
 					this.listLoading = false;
 				});
