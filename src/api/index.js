@@ -13,6 +13,7 @@ export const userDetaile = (id) => {
 	return axios.post(userDetaileUrl,qs.stringify({id:id}))
 				.then(res=>res.data)
 };
+<<<<<<< HEAD
 //打电话
 export const callTimes = (doctorID,telDoctor,telCustomer) => {
 	return axios.get(callNameTimesUrl+"tel="+telDoctor+"&doctorid="+doctorID).then(res=>{
@@ -29,4 +30,8 @@ export const callTimes = (doctorID,telDoctor,telCustomer) => {
 export const leaveMsg = (phone) => {
 	return axios.post(msgLeaveUrl+"callno="+phone+"&state=voicemail")
 				.then(res=>res.data)
+=======
+export const resetPhone = (phone) => {
+	console.log(phone);
+>>>>>>> 201c89ccd96645375d356eea22af6d8888da9efb
 }
