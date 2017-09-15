@@ -2,9 +2,9 @@
 	<div>
 		<!--工具条-->
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
-			<el-form :inline="true" :model="filters">
+			<el-form :inline="true">
 				<el-form-item>
-					<el-input v-model="filters.name" placeholder="姓名q" icon="edit"></el-input>
+					<el-input v-model="name"  placeholder="姓名" icon="search" @keyup.enter.native="getUsers('search')"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" v-on:click="getUsers('search')">查询</el-button>
@@ -45,23 +45,21 @@
 </template>
 
 <script>
-	import {users} from '../api/index'
+	import {userList} from '../api/index'
 	export default {
 		data() {
 	      return {
-	      	filters: {
-				name: ''
-			},
+	        name:'',
 	      	users: [],
 			total: 0,
 			page: 1,
 			listLoading: false,
 	      };
 	    },
-	 //    watch: {
-		//     // 如果路由有变化，会再次执行该方法
-		//     '$route': 'getUsers'
-		// },
+	    watch: {
+		    // 如果路由有变化，会再次执行该方法
+		    '$route': 'getUsers'
+		},
 	    methods: {
 	        handleSizeChange(val) {
 	        	console.log(`每页 ${val} 条`);
@@ -80,17 +78,19 @@
 				} else {
 					_type = this.$route.path.substring(1);
 				};
-				users(_type,this.filters.name).then((res) => {
-					console.log(res.data);
+				userList(_type,this.name).then((res) => {
 					this.total = res.data.length;
+					res.data.forEach(function(item){
+						item.age = new Date().getFullYear() - parseInt(item.age.substring(0,4));
+					});
 					this.users = res.data;
 					this.listLoading = false;
 				});
 			},
 			//跳转到用户详情页面
 			toUserDetail(userId){
-				console.log(userId);
-				this.$router.push('/userDetail');
+				// this.$store.dispatch('setuserid', userId);
+				this.$router.push('/userDetail?id='+userId);
 			}
 	    },
 	    mounted() {

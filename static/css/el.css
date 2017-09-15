@@ -1,3 +1,24 @@
+/*登录时的遮罩层*/
+.mask .error-wrap .el-alert__title {
+    font-size: 16px;
+    line-height: 80px;
+}
+
+/* 侧边栏 */
+.el-menu .fa {
+	margin-right: 5px;
+}
+.el-menu li i{
+    vertical-align: text-top;
+}
+.el-menu-item span,.el-submenu__title span{
+    font-size: 16px;
+    margin-left: 5px;
+}
+.el-submenu .el-menu .el-menu-item span{
+    font-size: 14px;
+}
+
 /* 患者详情页面的tabs */
 .el-tabs__header {
     margin: 0px;
@@ -8,7 +29,7 @@
     border-bottom-color: #fff;
 }
 .el-tabs__content {
-    padding: 40px 20px;
+    padding: 40px 20px 80px;
     border: 1px solid #dddddd;
     border-top-color: #fff;
 }
@@ -17,24 +38,4 @@
 }
 .el-tabs__item.is-active .fa {
     color: #20a0ff;
-}
-.el-input {
-    width: 240px;
-}
-.el-textarea {
-    width: 330px;
-}
-.el-alert--error {
-    width: 330px;
-    margin-top: 10px;
-}
-/* 侧边栏 */
-.el-submenu__title {
-    font-size: 16px;
-}
-.el-menu li i{
-    vertical-align: text-top;
-}
-.el-submenu .el-menu .el-menu-item {
-    font-size: 14px !important;
 }

@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/components/main'
-import Userlist from '@/pages/userlist'
-import Userdetaile from '@/pages/userdetail'
-import Home from '@/pages/home'
-import Leavemsg from '@/pages/leavemsg'
+// import Home from '@/components/home'
+// import Userlist from '@/components/userlist'
+// import Login from '@/pages/login'
+// import Main from '@/pages/main'
+// import Userdetaile from '@/pages/userdetail'
+// import Leavemsg from '@/pages/leavemsg'
 
 Vue.use(Router)
 
@@ -12,40 +13,41 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home',
-      component: Main,
-      iconCls: 'fa fa-tachometer',
-      leaf: true,//没有下级
-      children: [
-        {path: '/home',name: '系统总览',component: Home},
-      ]
+      redirect: '/login',
     },
     {
-      path: '/',
-      name: '患者管理',
-      component: Main,
-      iconCls: 'fa fa-user-o',
-      children: [
-        {path: '/today',name: '今日到诊患者',component: Userlist},
-        {path: '/yesterday',name: '昨日到诊患者',component: Userlist},
-        {path: '/registion',name: '签约患者',component: Userlist},
-      ]
+      path: '/login',
+      component: resolve => require(['../pages/login.vue'], resolve)
     },
     {
-      path: '/',
-      component: Main,
-      iconCls: 'fa fa-phone',
-      leaf: true,//没有下级
+      path: '/main',
+      component: resolve => require(['../components/home.vue'], resolve),
       children: [
-        {path: '/leavemsg',name: '语音留言',component: Leavemsg},
-      ]
-    },
-    {
-      path: '/',
-      component: Main,
-      each:true,
-      children: [
-        {path: '/userdetail',name: '患者详情',component: Userdetaile},
+        {
+          path: '/',
+          name: '系统总览',
+          component: resolve => require(['../pages/main.vue'], resolve)
+        },{
+          path: '/today',
+          name: '今日到诊患者',
+          component: resolve => require(['../pages/userlist.vue'], resolve)
+        },{
+          path: '/yesterday',
+          name: '昨日到诊患者',
+          component: resolve => require(['../pages/userlist.vue'], resolve)
+        },{
+          path: '/registion',
+          name: '签约患者',
+          component: resolve => require(['../pages/userlist.vue'], resolve)
+        },{
+          path: '/leavemsg',
+          name: '患者留言',
+          component: resolve => require(['../pages/leavemsg.vue'], resolve)
+        },{
+          path: '/detail',
+          name: '患者详情',
+          component: resolve => require(['../pages/userdetail.vue'], resolve)
+        }
       ]
     }
   ]
